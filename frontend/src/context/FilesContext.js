@@ -19,7 +19,7 @@ const FilesContextProvider = ({ children }) => {
     const { state, dispatch } = useReducer(filesReducer, { files: [] })
 
     return (
-        <FilesContext.Provider value={{ state, dispatch }}>
+        <FilesContext.Provider value={{ ...state, dispatch }}>
             {children}
         </FilesContext.Provider>
     )
