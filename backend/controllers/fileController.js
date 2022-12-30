@@ -1,8 +1,10 @@
+const path = require('path')
+const fs = require('fs').promises
 const File = require('../models/File')
 
 const getFiles = async (req, res) => {
     try {
-        const files = await File.find({ user_id: req.user._id })
+        const files = await File.find({ user_id: req.user._id }).sort({ createdAt: -1 })
 
         res.status(200).json({ files })
 
@@ -17,7 +19,9 @@ const uploadFile = async (req, res) => {
     }
 
     const filesData = req.files.map((file) => ({
-        name: file.originalname, path: file.path, user_id: req.user._id
+        name: file.originalname,
+        path: path.join('/uploads', file.filename),
+        user_id: req.user._id
     }))
 
     try {
@@ -38,7 +42,15 @@ const deleteFile = async (req, res) => {
     }
 
     try {
-        const file = await File.findByIdAndDelete(_id)
+        const file = await File.findOne({ _id, user_id: req.user._id })
+        
+        if(!file) {
+            throw Error('File does not exist')
+        }
+
+        await fs.unlink(path.join(process.cwd(), 'public', file.path))
+
+        await file.delete()
 
         res.status(200).json({ file })
 

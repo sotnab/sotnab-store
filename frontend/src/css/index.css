@@ -1,10 +1,355 @@
 :root {
    --primary-font: 'Poppins', sans-serif;
-   --logo-font: 'Carter One', cursive;
+   --logo-font: 'Roboto Slab', serif;
+   --grayish-green: #dad7cd;
+   --clay: #a3b18a;
+   --light-green: #588157;
+   --green: #3a5a40;
+   --dark-green: #344e41;
+   --error: coral;
+   --delete: rgb(177, 0, 0);
 }
 
 * {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+}
+
+body {
+   font-family: var(--primary-font);
+   color: var(--dark-green);
+}
+
+.App {
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+}
+
+.wrap {
+   max-width: 1200px;
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.page {
+   max-width: 1100px;
+   padding: 20px 10px;
+   margin-top: 20px;
+   flex-grow: 1;
+}
+
+.header {
+   padding: 10px;
+   background: var(--dark-green);
+   color: var(--grayish-green);
+   box-shadow: 0 2px 15px -2px rgba(0, 0, 0, 0.4);
+}
+
+.header__wrap {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.header__title {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-family: var(--logo-font);
+   font-size: 2rem;
+}
+
+.header__title-link {
+   text-decoration: none;
+   color: inherit;
+}
+
+.header__logo {
+   margin-top: 5px;
+}
+
+.header__icon {
+   font-size: 1.4em;
+}
+
+.header__actions {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.header__user {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.header__link {
+   display: block;
+   padding: 2px 8px;
+   font-size: 1.1em;
+   color: inherit;
+   border-bottom: 1px solid var(--clay);
+   text-decoration: none;
+   transition: 100ms;
+}
+
+.header__link:hover {
+   color: white;
+   border-color: var(--grayish-green);
+}
+
+.form__btn,
+.header__btn {
+   padding: 4px 10px;
+   background: transparent;
+   color: var(--grayish-green);
+   font-family: inherit;
+   font-size: 1em;
+   border: 1px solid var(--grayish-green);
+   border-radius: 4px;
+   cursor: pointer;
+   transition: 100ms;
+}
+
+.header__btn:hover {
+   transform: translateY(-2px);
+}
+
+.form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 20px;
+}
+
+.form__row {
+   display: flex;
+   align-items: center;
+}
+
+.form__title {
+   font-size: 2.2rem;
+}
+
+.form__control {
+   display: block;
+   max-width: 500px;
+   width: 100%;
+   padding: 5px 15px;
+   font-size: 1.2rem;
+   font-family: inherit;
+   border: 2px solid var(--dark-green);
+   border-radius: 4px;
+}
+
+.form__btn {
+   padding: 5px 20px;
+   font-size: 1.2rem;
+   background: var(--dark-green);
+   border: none;
+   transition: 200ms;
+   box-shadow: 2px 2px 10px -2px rgba(0, 0, 0, 0.4);
+}
+
+.form__btn:hover {
+   box-shadow: 2px 2px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+.form__error {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   color: var(--error);
+   font-size: 1.1rem;
+   opacity: 0;
+   transition: 100ms;
+}
+
+.form__error--visible {
+   opacity: 1;
+}
+
+.form__file {
+   display: none;
+}
+
+.form__file-name {
+   display: block;
+   max-width: 20ch;
+   padding: 2px 10px;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   overflow: hidden;
+}
+
+.form__file-add {
+   display: flex;
+   align-items: center;
+   padding: 4px;
+   border-radius: 4px;
+   color: var(--green);
+   border: 2px solid var(--green);
+   cursor: pointer;
+}
+
+.form__file-add:hover {
+   box-shadow: 2px 2px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+.home {
+   display: flex;
+}
+
+.home__form {
+   width: 30%;
+   margin-top: 50px;
+}
+
+.files {
+   display: flex;
+   justify-content: space-evenly;
+   flex-wrap: wrap;
+   column-gap: 15px;
+   row-gap: 25px;
+   width: 70%;
+   padding: 20px;
+   border-right: 1px solid var(--grayish-green);
+   overflow-y: auto;
+}
+
+.files__info {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   font-size: 1.2rem;
+}
+
+.file {
+   display: grid;
+   grid-template: 1fr / 1fr;
+   grid-template-areas: 'icon icon icon' 'name download delete';
+   gap: 5px;
+   width: 160px;
+   height: 150px;
+   padding: 5px 10px;
+   border-radius: 10px;
+   box-shadow: 4px 4px 15px -2px rgba(0, 0, 0, 0.1);
+   transition: 200ms;
+}
+
+.file:hover {
+   box-shadow: 4px 4px 15px -5px rgba(0, 0, 0, 0.4);
+   transform: translate(-2px, -2px);
+}
+
+.file__display {
+   grid-area: icon;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: inherit;
+   font-size: 40px;
+   text-decoration: none;
+}
+
+.file__name {
+   grid-area: name;
+   margin: auto 0;
+   font-size: 0.9rem;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+}
+
+.file__button {
+   grid-area: download;
+   justify-self: flex-end;
+   padding: 2px 5px;
+   background: none;
+   font-size: 18px;
+   line-height: 1;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: 100ms;
+}
+
+.file__button--delete {
+   grid-area: delete;
+}
+
+.file__button:hover {
+   color: var(--clay);
+}
+
+.file__button--delete:hover {
+   color: var(--delete);
+}
+
+.skeleton {
+   width: 100%;
+   height: calc(100% - 10px);
+   margin: auto 0;
+   background-color: lightgray;
+   border-radius: 6px;
+   animation: skeleton 2s infinite;
+}
+
+.file-skeleton {
+   display: grid;
+   grid-template: 1fr 25px / 1fr 25px 25px;
+   grid-template-areas: 'icon icon icon' 'name download delete';
+   gap: 5px;
+   width: 160px;
+   height: 150px;
+   padding: 5px 10px;
+   border-radius: 10px;
+   box-shadow: 4px 4px 15px -2px rgba(0, 0, 0, 0.1);
+}
+
+.file-skeleton__display {
+   grid-area: icon;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.file-skeleton__icon {
+   width: 50px;
+   height: 40px;
+}
+
+.file-skeleton__name {
+   grid-area: name;
+}
+
+.file-skeleton__download {
+   grid-area: download;
+}
+
+.file-skeleton__delete {
+   grid-area: delete;
+}
+
+@keyframes skeleton {
+   30% {
+      background-color: lightgray;
+   }
+   50% {
+      background-color: whitesmoke;
+   }
+   70% {
+      background-color: lightgray;
+   }
+}
+.footer {
+   padding: 10px;
+   background: var(--dark-green);
+   color: var(--grayish-green);
+   font-weight: bold;
+   text-align: center;
 }

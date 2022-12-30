@@ -26,10 +26,14 @@ const login = async (req, res) => {
 }
 
 const signup = async (req, res) => {
-    const { email, password } = req.body
+    const { email, password, repeatedPassword } = req.body
 
     if (!email || !password) {
         return res.status(401).json({ error: 'Missing email or password' })
+    }
+
+    if(password !== repeatedPassword) {
+        return res.status(401).json({ error: 'Passwords does not match' })
     }
 
     try {

@@ -13,7 +13,7 @@ const FileSchema = new Schema({
         type: String,
         required: true
     }
-})
+}, { timestamps: true })
 
 const File = model('File', FileSchema)
 

@@ -4,12 +4,15 @@ import './css/index.css'
 import App from './App'
 
 import AuthContextProvider from './context/AuthContext'
+import FilesContextProvider from './context/FilesContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <FilesContextProvider>
+        <App />
+      </FilesContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 )
